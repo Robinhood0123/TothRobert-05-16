@@ -12,33 +12,46 @@ app.use(express.json());
 const USERS_FILE = './users.json';
 const RESET_FILE = './reset_users.json';
 
+// Segédfüggvények
 function readUsers() {
-  return JSON.parse(fs.readFileSync(USERS_FILE, 'utf-8'));
+  const data = fs.readFileSync(USERS_FILE, 'utf-8');
+  return JSON.parse(data);
 }
 
 function writeUsers(users) {
   fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
 }
 
+// GET / – Összes felhasználó listázása
 app.get('/', (req, res) => {
-  const users = readUsers();
-  res.json(users);
+  try {
+    const users = readUsers();
+    res.json(users);
+  } catch {
+    res.status(500).json({ error: 'Nem sikerült beolvasni az adatokat.' });
+  }
 });
 
+// GET /users/:id – Egy adott felhasználó lekérése
 app.get('/users/:id', (req, res) => {
-  const id = +req.params.id;
+  const id = Number(req.params.id);
   const users = readUsers();
   const user = users.find(u => u.id === id);
-  if (user) res.json(user);
-  else res.status(404).json({ error: 'Felhasználó nem található.' });
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404).json({ error: 'Felhasználó nem található.' });
+  }
 });
 
+// POST /ujuser – Új felhasználó hozzáadása
 app.post('/ujuser', (req, res) => {
   const newUser = req.body;
-  if (!newUser.id) return res.status(400).json({ error: 'Az id mező kötelező!' });
-
+  if (!newUser.id) {
+    return res.status(400).json({ error: 'Az id mező kötelező!' });
+  }
   const users = readUsers();
-  if (users.some(u => u.id === newUser.id)) {
+  if (users.find(u => u.id === newUser.id)) {
     return res.status(400).json({ error: 'Ilyen ID-jű felhasználó már létezik!' });
   }
   users.push(newUser);
@@ -46,23 +59,37 @@ app.post('/ujuser', (req, res) => {
   res.status(201).json(newUser);
 });
 
+// DELETE /delete/:id – Felhasználó törlése
 app.delete('/delete/:id', (req, res) => {
-  const id = +req.params.id;
-  let users = readUsers();
-  if (!users.some(u => u.id === id)) {
-    return res.status(404).json({ error: 'Felhasználó nem található.' });
+  try {
+    const id = Number(req.params.id);
+    let users = readUsers();
+
+    const userIndex = users.findIndex(u => u.id === id);
+    if (userIndex === -1) {
+      return res.status(404).json({ error: 'Felhasználó nem található.' });
+    }
+
+    users.splice(userIndex, 1); // törlés index alapján
+    writeUsers(users);
+
+    res.json({ message: 'Felhasználó törölve.' });
+  } catch (err) {
+    res.status(500).json({ error: 'Hiba történt a törlés során.' });
   }
-  users = users.filter(u => u.id !== id);
-  writeUsers(users);
-  res.json({ message: 'Felhasználó törölve.' });
 });
 
-app.post('/reset', (req, res) => {
-  const resetData = fs.readFileSync(RESET_FILE, 'utf-8');
-  fs.writeFileSync(USERS_FILE, resetData);
-  res.json({ message: 'Felhasználók visszaállítva.' });
+app.get('/reset', (req, res) => {
+  try {
+    const resetData = fs.readFileSync(RESET_FILE, 'utf-8');
+    fs.writeFileSync(USERS_FILE, resetData);
+    res.json({ message: 'Felhasználók visszaállítva a reset_users.json alapján.' });
+  } catch {
+    res.status(500).json({ error: 'Nem sikerült visszaállítani az adatokat.' });
+  }
 });
 
-app.listen(3000, () => {
-  console.log('Szerver fut a http://localhost:3000 címen');
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Szerver fut: http://localhost:${PORT}`);
 });
