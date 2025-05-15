@@ -5,5 +5,26 @@
     "express": "^5.1.0",
     "fs": "^0.0.1-security",
     "nodemon": "^3.1.10"
-  }
+  },
+  "name": "tothrobert-05-16",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server_local.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server_local.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Robinhood0123/TothRobert-05-16.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Robinhood0123/TothRobert-05-16/issues"
+  },
+  "homepage": "https://github.com/Robinhood0123/TothRobert-05-16#readme"
 }
