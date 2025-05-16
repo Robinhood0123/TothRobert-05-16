@@ -48,5 +48,5 @@ app.post('/reset', (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log('Fut: http://localhost:3000');
+  console.log('A szerver a 3000-es porton fut.');
 });
