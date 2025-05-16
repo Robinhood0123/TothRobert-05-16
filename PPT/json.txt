@@ -1,0 +1,62 @@
+[
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "Hogyan kezdj blogírásba?",
+    "body": "A blogírás remek módja annak, hogy megoszd gondolataid másokkal."
+  },
+  {
+    "userId": 1,
+    "id": 2,
+    "title": "5 tipp a hatékony tanuláshoz",
+    "body": "A tanulás nemcsak kötelező, hanem hasznos is lehet, ha jól csinálod."
+  },
+  {
+    "userId": 2,
+    "id": 3,
+    "title": "Kedvenc könyveim 2025-ben",
+    "body": "Ebben a posztban megosztom azokat a könyveket, amik a legnagyobb hatással voltak rám."
+  },
+  {
+    "userId": 2,
+    "id": 4,
+    "title": "Miért fontos a sport?",
+    "body": "A rendszeres mozgás javítja a közérzetet és az egészséget is."
+  },
+  {
+    "userId": 3,
+    "id": 5,
+    "title": "Kávé vagy tea?",
+    "body": "Mindkét italnak megvan a maga előnye, de vajon melyik jobb hosszú távon?"
+  },
+  {
+    "userId": 3,
+    "id": 6,
+    "title": "Utazás Erdélyben",
+    "body": "Lenyűgöző tájak, vendégszerető emberek és sok történelmi emlék."
+  },
+  {
+    "userId": 4,
+    "id": 7,
+    "title": "Egyszerű receptek kezdőknek",
+    "body": "Ha most tanulsz főzni, ezekkel a receptekkel könnyen kezdhetsz."
+  },
+  {
+    "userId": 4,
+    "id": 8,
+    "title": "Digitális detox",
+    "body": "Időnként jó dolog offline lenni, és kikapcsolni a digitális zajt."
+  },
+  {
+    "userId": 5,
+    "id": 9,
+    "title": "Filmajánló – Tavaszi klasszikusok",
+    "body": "Ezek a filmek tökéletesek egy nyugodt, tavaszi délutánra."
+  },
+  {
+    "userId": 5,
+    "id": 10,
+    "title": "Tippek érettségi előtt",
+    "body": "Készülj okosan, és ne hagyd az utolsó pillanatra!"
+  }
+]
