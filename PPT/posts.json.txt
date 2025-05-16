@@ -1,3 +1,5 @@
+Létre hoztam inkább egy új json állományt.
+
 [
   {
     "userId": 1,
